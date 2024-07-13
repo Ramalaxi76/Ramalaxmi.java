@@ -1,0 +1,25 @@
+class Solution {
+    public int removePalindromeSub(String s) {
+        if (s.isEmpty()) {
+            return 0;
+        }
+        
+        if (isPalindrome(s)) {
+            return 1;
+        } else {
+            return 2; // Remove all 'a's in one step, then all 'b's in the second step
+        }
+    }
+    
+    private boolean isPalindrome(String s) {
+        int left = 0, right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
