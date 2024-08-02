@@ -1,0 +1,35 @@
+class Solution {
+    public String countAndSay(int n) {
+        if (n == 1) return "1";
+
+        String result = "1";
+        for (int i = 2; i <= n; i++) {
+            result = generateNextSequence(result);
+        }
+        return result;
+    }
+
+    private String generateNextSequence(String sequence) {
+        StringBuilder nextSequence = new StringBuilder();
+        int count = 1;
+        char currentChar = sequence.charAt(0);
+
+        for (int i = 1; i < sequence.length(); i++) {
+            if (sequence.charAt(i) == currentChar) {
+                count++;
+            } else {
+                nextSequence.append(count).append(currentChar);
+                count = 1;
+                currentChar = sequence.charAt(i);
+            }
+        }
+        nextSequence.append(count).append(currentChar);
+        return nextSequence.toString();
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int n = 4;  // You can change the value of n to test other cases
+        System.out.println("The " + n + "th element of the count-and-say sequence is: " + solution.countAndSay(n));
+    }
+}
